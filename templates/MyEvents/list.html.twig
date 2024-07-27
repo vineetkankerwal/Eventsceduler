@@ -1,0 +1,55 @@
+{# templates/events/list.html.twig #}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event List</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .btn-filter {
+            background-color: #343a40;
+            color: white;
+            border-radius: 12px;
+            padding: 10px 20px;
+        }
+        .btn-filter:hover {
+            background-color: #23272b;
+        }
+    </style>
+</head>
+<body>
+
+
+
+    <!-- Events List -->
+    <div id="eventsList" class="mt-4">
+        {% for event in events %}
+            <div class="event-item">{{ event.name }} - {{ event.StartDate|date('Y-m-d') }}</div>
+        {% endfor %}
+    </div>
+
+  
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Show modal when filter button is clicked
+            $('#filterButton').on('click', function() {
+                $('#filterModal').modal('show');
+            });
+
+            // Handle form submission
+            $('#filterForm').on('submit', function(e) {
+                e.preventDefault();
+                const startDate = $('#startDate').val();
+                const endDate = $('#endDate').val();
+
+                // Redirect to the same route with query parameters
+                window.location.href = '{{ path('event_list') }}?startDate=' + startDate + '&endDate=' + endDate;
+            });
+        });
+    </script>
+</body>
+</html>

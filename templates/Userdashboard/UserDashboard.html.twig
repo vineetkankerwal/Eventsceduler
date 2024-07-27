@@ -1,0 +1,350 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ZeitPlanner - User Dashboard{% endblock %}
+
+{% block stylesheets %}{% endblock %}
+
+{% block body %}
+
+<style>
+    .nav-link {
+        position: relative;
+        transition: all 0.3s;
+    }
+
+    .nav-link::after {
+        content: '';
+        position: absolute;
+        bottom: -5px; /* Adjust as needed */
+        left: 0;
+        width: 0;
+        height: 2px;
+        background-color: black; /* Color of underline */
+        transition: all 0.3s;
+    }
+
+    .nav-link.active::after,
+    .nav-link:hover::after {
+        width: 100%;
+    }
+
+    #calendarUser {
+        height: 88vh;
+        margin-top: 12vh;
+        background-color:white;
+    }
+
+    #calendar_box {
+        margin-top: 5vh;
+        height: 70vh;
+        width: 70vw;
+        padding:20px;
+    }
+
+    #EventBox {
+        height: 65vh;
+        width: 36vw;
+        margin-top: 5vh;
+    }
+
+    #TimeZoneButton {
+        position: absolute;
+        top: 1vh;
+        left: 12vw;
+    }
+    .header{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        padding:10px;
+    }
+    .nav-items{
+        display:flex;
+        justify-content:center;
+        flex-grow:1;
+    }
+    #navbarSupportedContent ul li{
+        margin: 0 15px;
+    text-decoration: none;
+    }
+    #dropdownlist{
+     max-height:15vh;
+    
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"><img src="dist/img/LOGO.png" alt="logo icon" height="55px"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center" id="navbarSupportedContent">
+            <ul class="navbar-nav">
+                <li class="nav-item fs-5 fw-normal navList">
+                    <a href="/userdashboard" class="nav-link active position-relative" aria-current="page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-calendar" viewBox="0 0 16 16">
+                            <path d="M3.5 0a.5.5 0 0 1 .5.5V1h8V.5a.5.5 0 0 1 1 0V1h1a2 2 0 0 1 2 2v11a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V3a2 2 0 0 1 2-2h1V.5a.5.5 0 0 1 .5-.5M1 4v10a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1V4z"/>
+                        </svg>
+                        My Calendar
+                    </a>
+                </li>
+                <li class="nav-item fs-5 ms-2 fw-normal">
+                    <a href="/myEvents" class="nav-link position-relative" aria-current="page">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                             class="bi bi-list-task" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd"
+                                  d="M2 2.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5V3a.5.5 0 0 0-.5-.5zM3 3H2v1h1z"/>
+                            <path d="M5 3.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5M5.5 7a.5.5 0 0 0 0 1h9a.5.5 0 0 0 0-1z"/>
+                            <path fill-rule="evenodd"
+                                  d="M1.5 7a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5zM2 7h1v1H2zm0 3.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5z"/>
+                        </svg>
+                        My Events
+                    </a>
+                </li>
+                <li class="nav-item fs-5 ms-2 fw-normal">
+                    <a href="/myrequests" class="nav-link position-relative" aria-current="page">
+                        <img src="dist/img/meeting-icon.jpg" width="30" height="30">
+                            
+                           
+                        Meeting Requests
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <div class="d-flex align-items-center me-5">
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center link-body-emphasis text-decoration-none dropdown-toggle"
+                   data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="dist/img/profile.jpeg" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>Profile</strong>
+                </a>
+                <div class="dropdown-menu dropup">
+                    <a class="dropdown-item" href="/">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<section id="calendarUser" class="pb-3 position-relative">
+    <h2 class="display-5 text-center mt-3">Calendar</h2>
+    <div class="dropdown mb-3" id="TimeZoneButton">
+        <button class="ms-5 text-center btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1"
+                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Select Timezone
+        </button>
+        <div class="dropdown-menu text-center" aria-labelledby="dropdownMenuButton1" id="dropdownlist">
+            <div class="ms-2 form-check">
+                <input class="form-check-input" name="timezone" type="radio" id="indiaCheckbox" value="Asia/Kolkata">
+                <label class="form-check-label" for="indiaCheckbox">India (IST)</label>
+            </div>
+            <div class="ms-2 form-check">
+                <input class="form-check-input" name="timezone" type="radio" id="germanyCheckbox" value="Europe/Berlin">
+                <label class="form-check-label" for="germanyCheckbox">Germany (CET)</label>
+            </div>
+            <div class="ms-2 form-check">
+                <input class="form-check-input" name="timezone" type="radio" id="canadaCheckbox" value="America/Toronto">
+                <label class="form-check-label" for="canadaCheckbox">Canada (EST)</label>
+            </div>
+            <div class="ms-2 form-check">
+                <input class="form-check-input" name="timezone" type="radio" id="australiaCheckbox" value="Australia/Sydney">
+                <label class="form-check-label" for="australiaCheckbox">Australia (AEST)</label>
+            </div>
+
+            <div class="ms-2 form-check">
+                <input class="form-check-input" name="timezone" type="radio" id="chinaCheckbox" value="Asia/Shanghai">
+                <label class="form-check-label" for="chinaCheckbox">China (CST)</label>
+            </div>
+            <div class="ms-2 form-check">
+                <input class="form-check-input" name="timezone" type="radio" id="londonCheckbox" value="Europe/London">
+                <label class="form-check-label" for="londonCheckbox">London (GMT)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="text-center d-flex MyCalendarContent">
+            <div class="calendar-container mb-4" id="calendar_box">
+                <header class="calendar-header">
+                    <p class="calendar-current-date"></p>
+                    <div class="calendar-navigation">
+                        <span id="calendar-prev" class="material-symbols-rounded">chevron_left</span>
+                        <span id="calendar-next" class="material-symbols-rounded">chevron_right</span>
+                    </div>
+                </header>
+                <div class="calendar-body">
+                    <ul class="calendar-weekdays">
+                        <li>Sun</li>
+                        <li>Mon</li>
+                        <li>Tue</li>
+                        <li>Wed</li>
+                        <li>Thu</li>
+                        <li>Fri</li>
+                        <li>Sat</li>
+                    </ul>
+                    <ul class="calendar-dates"></ul>
+                </div>
+            </div>
+
+            <div class="card ms-3" id="EventBox">
+                <div class="card-header">Event Details</div>
+                <div id="eventDisplay" class="card border-0 overflow-auto" style="display: none;">
+                    <div id="eventsContainer">
+                        {% for event in events %}
+                            <div class="card-body border-bottom event-item"
+                                 data-startdate="{{ event.StartDate|date('Y-m-d') }}"
+                                 data-enddate="{{ event.EndDate|date('Y-m-d') }}">
+                                 
+                                <h5 class="card-title">{{ event.name }}</h5>
+                                <div class="event">
+                                <p class="card-text" id="inputTime">{{ event.StartDate|date('Y-m-d H:i A') }} - {{ event.EndDate|date('Y-m-d H:I A') }}</p>
+                               <p id="result"></p>
+                                </div>
+                                <p class="card-title">platform is: {{ event.Location }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
+<script>
+ 
+
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = date.getMonth();
+
+    const day = document.querySelector(".calendar-dates");
+    const currdate = document.querySelector(".calendar-current-date");
+    const prenexIcons = document.querySelectorAll(".calendar-navigation span");
+
+    const months = [
+        "January", "February", "March", "April", "May", "June",
+        "July", "August", "September", "October", "November", "December"
+    ];
+
+    // Function to render the calendar
+    const manipulate = () => {
+        let dayone = new Date(year, month, 1).getDay();
+               let lastdate = new Date(year, month + 1, 0).getDate();
+        let dayend = new Date(year, month, lastdate).getDay();
+        let monthlastdate = new Date(year, month, 0).getDate();
+        let lit = "";
+
+        for (let i = dayone; i > 0; i--) {
+            lit += `<li class="inactive">${monthlastdate - i + 1}</li>`;
+        }
+
+        for (let i = 1; i <= lastdate; i++) {
+            let isToday = i === date.getDate() && month === new Date().getMonth() && year === new Date().getFullYear() ? "active" : "";
+            lit += `<li class="${isToday}" data-date="${year}-${(month + 1).toString().padStart(2, '0')}-${i.toString().padStart(2, '0')}">${i}</li>`;
+        }
+
+        for (let i = dayend; i < 6; i++) {
+            lit += `<li class="inactive">${i - dayend + 1}</li>`;
+        }
+
+        currdate.innerText = `${months[month]} ${year}`;
+        day.innerHTML = lit;
+
+        attachEventListeners(); // Call to attach event listeners after rendering the dates
+    };
+
+    // Function to attach event listeners to the calendar dates
+    const attachEventListeners = () => {
+        document.querySelectorAll(".calendar-dates li").forEach(item => {
+            item.addEventListener("click", (e) => {
+                const selectedDate = e.target.getAttribute("data-date");
+                filterEvents(selectedDate);
+            });
+        });
+    };
+
+    // Function to filter and display events based on the selected date
+    const filterEvents = (selectedDate) => {
+        const eventsContainer = document.getElementById("eventsContainer");
+        const events = document.querySelectorAll(".event-item");
+
+        eventsContainer.innerHTML = "";
+
+        events.forEach(event => {
+            const startDate = event.getAttribute("data-startdate");
+            const endDate = event.getAttribute("data-enddate");
+
+            if (selectedDate >= startDate && selectedDate <= endDate) {
+                eventsContainer.appendChild(event.cloneNode(true));
+            }
+        });
+
+        document.getElementById("eventDisplay").style.display = eventsContainer.childElementCount > 0 ? "block" : "none" ;
+       
+    };
+
+    // Initial render of the calendar
+    manipulate();
+
+    // Event listeners for previous and next month navigation
+    prenexIcons.forEach(icon => {
+        icon.addEventListener("click", () => {
+            month = icon.id === "calendar-prev" ? month - 1 : month + 1;
+
+            if (month < 0 || month > 11) {
+                date = new Date(year, month, new Date().getDate());
+                year = date.getFullYear();
+                month = date.getMonth();
+            } else {
+                date = new Date();
+            }
+
+            manipulate();
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelectorAll('input[name="timezone"]').forEach(radio => {
+            radio.addEventListener('change', function () {
+                convertAllEvents();
+            });
+        });
+
+      
+
+        function convertAllEvents() {
+            const fromTimezone = 'Asia/Kolkata'; // Fixed to India (IST)
+            const selectedTimezone = document.querySelector('input[name="timezone"]:checked');
+
+            const events = document.querySelectorAll('.event'); // Assuming each event is wrapped in a div with class 'event'
+
+            events.forEach(event => {
+                const inputTime = event.querySelector('.card-text').innerText;
+                const [startTime, endTime] = inputTime.split(' - ');
+
+                const startDate = moment(startTime, 'YYYY-MM-DD hh:mm A'); // Use moment.js to parse the date string
+                const endDate = moment(endTime, 'YYYY-MM-DD hh:mm A');
+
+                if (!startDate.isValid() || !endDate.isValid()) {
+                    event.querySelector('#result').innerText = 'Invalid date format';
+                    return;
+                }
+
+                const convertedStartDate = startDate.tz(selectedTimezone.value);
+                const convertedEndDate = endDate.tz(selectedTimezone.value);
+
+                event.querySelector('#result').innerText = `Converted Time is :${convertedStartDate.format('YYYY-MM-DD hh:mm A')} - ${convertedEndDate.format('YYYY-MM-DD hh:mm A')}`;
+            });
+        }
+    });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+{% endblock %}

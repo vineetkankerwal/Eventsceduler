@@ -1,0 +1,215 @@
+{# 
+{% extends 'base.html.twig' %}
+
+{% block title %}Register!
+{% endblock %}
+
+{% block body %}
+
+
+    <style>
+        #photoimage{
+            margin-top: 15vh;
+        }
+        #loginbox{
+            margin-top: 20vh;
+        }
+    </style>
+
+    
+
+<section class="vh-100 text-bg-info" >
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-9 col-lg-6 col-xl-5 ">
+          <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+            class="img-fluid" alt="Sample image" id="photoimage">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1" id="loginbox">
+        
+          {{ form_start(form) }}
+                        <form id="loginForm" method="POST">
+                          
+                        
+                            <div data-mdb-input-init class="form-outline mb-4">
+                           {{ form_label(form.name)}}
+                            {{ form_widget(form.name, {'attr': {'class':'form-control'}}) }}
+                            {{ form_errors(form.name)}}
+                               
+                            </div>
+                           <div data-mdb-input-init class="form-outline mb-3">
+                            {{ form_label(form.email)}}
+                            {{ form_widget(form.email, {'attr': {'class':'form-control'}}) }}
+                            {{ form_errors(form.email)}}
+                               
+                            </div>
+                           <div data-mdb-input-init class="form-outline mb-3">
+                             {{ form_label(form.plainPassword)}}
+                            {{ form_widget(form.plainPassword, {'attr': {'class':'form-control'}}) }}
+                            {{ form_errors(form.plainPassword)}}
+                               
+                            </div>
+                           <div data-mdb-input-init class="form-outline mb-3 form-check">
+                             {{ form_widget(form.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                                {{ form_label(form.agreeTerms, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                {{ form_errors(form.agreeTerms) }}
+                               
+                            </div>
+                        <div class="text-center text-lg-start mt-4 pt-2">
+                            <button  data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">{{ button_label|default('Register') }}</button>
+                            <p class="small fw-bold mt-2 pt-1 mb-0 fs-6">Already have an acccount click here  <a href="/login"
+                                class="link-danger fs-5">Login</a></p>
+                        </div>
+                            
+                            {{ form_end(form) }}
+                            
+                           {% for message in app.flashes('error') %}
+
+                           <div class="small fw-bold mt-2 pt-1 mb-0 text-danger fs-5">
+                           {{ message }}
+                           </div>
+                           {% endfor %} 
+                            
+                          
+                        </form>
+                       
+                  
+                     </div>
+         
+        </div>
+      </div>
+    </div>
+   
+  </section>
+  {% endblock %}  #}
+
+  
+
+
+
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<style>
+ 
+
+body {
+    background-image: url("dist/img/th.jpg");
+    background-size:cover; 
+    background-repeat: no-repeat; 
+    background-position: center;
+    backdrop-filter: blur(5px);
+    height: 100vh;   
+    width: 100vw;
+        margin: 0;
+
+}
+
+
+
+   .form-container {
+    
+   background: rgba(255, 255, 255, 0.5); 
+    border-radius: 10px;
+    backdrop-filter: blur(10px); 
+    padding: 20px; 
+    margin: 20px auto; 
+    max-width: 1200px; 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+     
+
+   .form-container h1 {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+        
+    }
+
+   .form-container.form-control {
+        background: #fff;
+        border: none;
+        border-radius: 5px;
+        color: #333;
+    }
+
+   .form-container.form-control:focus {
+        background: #fff;
+        color: #333;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+
+   .form-container.btn-primary {
+        background: #007bff;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 1.1rem;
+        color: #fff;
+    }
+
+   .form-container.btn-primary:hover {
+        background: #0056b3;
+    }
+
+   .form-container a.link-danger {
+        color: #dc3545;
+    }
+
+   .form-container a.link-danger:hover {
+        color: #a71d2a;
+    }
+</style>
+
+<section class="vh-100 d-flex justify-content-center align-items-center">
+    <div class="container-fluid h-custom">
+        <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-xl-4 offset-xl-1">
+                <div class="form-container">
+                    <h1 class="text-center">Welcome</h1>
+                    {{ form_start(form) }}
+                    <div class="form-group mb-4 text-center fw-bold">
+                         {{ form_label(form.name)}}
+                            {{ form_widget(form.name, {'attr': {'class':'form-control'}}) }}
+                            {{ form_errors(form.name)}}
+                    </div>
+                    <div class="form-group mb-4 text-center fw-bold">
+                         {{ form_label(form.email)}}
+                            {{ form_widget(form.email, {'attr': {'class':'form-control'}}) }}
+                            {{ form_errors(form.email)}}
+                    </div>
+                    <div class="form-group mb-3 fw-bold text-center">
+                        {{ form_label(form.plainPassword) }}
+                        {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.plainPassword) }}
+                    </div>
+                    <div class="form-group mb-3 text-center">
+                         {{ form_widget(form.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+                                {{ form_label(form.agreeTerms, null, {'label_attr': {'class': 'form-check-label'}}) }}
+                                {{ form_errors(form.agreeTerms) }}
+                    </div>
+                    <div class="text-center text-lg-start mt-4 pt-2">
+                        <button class="btn btn-secondary d-flex m-auto"
+                                style="padding-left: 2.5rem; padding-right: 2.5rem;">{{ button_label|default('register') }}</button>
+                        <p class="small fw-bold mt-2 pt-1 mb-0 fs-6 text-center">Already have an account? <a href="/login"
+                                                                                                 class="link-danger fs-5">Login</a></p>
+                    </div>
+                    {{ form_end(form) }}
+                    <p class="small fw-bold mt-2 pt-1 mb-0 text-danger fs-5 text-center">
+                       {% for message in app.flashes('error') %}
+
+                           <div class="small fw-bold mt-2 pt-1 mb-0 text-danger fs-5">
+                           {{ message }}
+                           </div>
+                           {% endfor %} 
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

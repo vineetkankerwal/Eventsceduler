@@ -1,0 +1,20 @@
+controllers:
+    resource:
+        path: ../src/Controller/
+        namespace: App\Controller
+    type: attribute
+
+app_update_event:
+    path: /myEvents/update/{id}
+    controller: App\Controller\MyEventsController::updateEvent
+    methods: ['POST']
+    
+events_by_date:
+    path: /events/{date}
+    controller: App\Controller\CalendarController::getEventsByDate
+    methods: GET
+
+# get_events:
+#     path: /get-events
+#     controller: App\Controller\MyEventsFetchController::getEvents
+#     methods: [GET] 

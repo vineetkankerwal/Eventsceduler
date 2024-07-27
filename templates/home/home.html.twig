@@ -1,0 +1,494 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!
+{% endblock %}
+
+{% block body %}
+
+<section id="mainHome">
+	<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
+		<div class="container-fluid">
+			<a class="navbar-brand ms-5" href="#"><img src="dist/img/LOGO.png" alt="logo icon" height="55px"></a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse justify-content-center ms-5" id="navbarSupportedContent">
+				<ul class="navbar-nav">
+					<li class="nav-item fs-5 ms-3 fw-normal navList">
+						<a href="#home" class="nav-link link-dark " aria-current="page" id="home-link">Home</a>
+					</li>
+					<li class="nav-item fs-5 ms-3 fw-normal navList">
+						<a href="#world-clock" class="nav-link link-dark" id="clock-link">World Clock</a>
+					</li>
+					<li class="nav-item fs-5 ms-3 fw-normal navList">
+						<a href="#timeZoneConvertor" class="nav-link link-dark">TimeZone Convertor</a>
+					</li>
+					<li class="nav-item fs-5 ms-3 fw-normal navList">
+						<a href="#calendar" class="nav-link link-dark" id="calender-link">Calender</a>
+					</li>
+					<li class="nav-item fs-5 ms-3 fw-normal navList">
+						<a href="#features" class="nav-link link-dark" id="features-link">Features</a>
+					</li>
+					<li class="nav-item fs-5 ms-3 fw-normal navList">
+						<a href="#about" class="nav-link link-dark" id="about-link">About Me</a>
+					</li>
+					<li class="nav-item fs-5 ms-3 fw-normal navList">
+						<a href="#contactUs" class="nav-link link-dark" id="contact-link">Contact Us</a>
+					</li>
+				</ul>
+			
+			<div class="  col-md-3 text-end nav-pills">
+				<a href="/register" type="button" class="btn btn-outline-dark me-2 text-center">Register<a>
+						<a href="/login" type="button" class="btn btn-outline-dark text-center">Login</a>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</nav>
+	
+			<!-- home section-->
+			<section id="home">
+				<div class="px-4 pt-5 mt-5 text-center">
+					<h1 class="display-5 fs-1 fw-bold text-body-emphasis">ZeitPlanner -
+												                Global Event SchedulerApp</h1>
+					<div class="col-lg-6 mx-auto">
+						<p class="lead mb-4">The ZeitPlanner project aims to provide a
+														                    comprehensive solution for event management, helping
+														                    organizers streamline workflows, manage schedules, and host
+														                    successful events.</p>
+
+					</div>
+					<div class="overflow">
+						<div class="container px-5">
+							<img src="dist/img/homesection.jpg" class="img-fluid border rounded-3 mb-4" alt="Example image" height="500" loading="lazy">
+						</div>
+					</div>
+				</div>
+			</section>
+			<!--about section-->
+
+
+			<!--world-clock section-->
+			<section id="world-clock" class="mb-5">
+
+				<h1 class="display-5 mb-5 text-body-emphasis text-center">World Clock</h1>
+
+
+				<div class="dropdown">
+					<button class=" ms-5 mb-5 text-center btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Select Timezone
+					</button>
+
+					<div class=" dropdown-menu scrollbar text-center " aria-labelledby="dropdownMenuButton" id="dropdownContent">
+						<div class="ms-2 form-check">
+							<input class="form-check-input" type="checkbox" id="indiaCheckbox">
+							<label class="form-check-label" for="indiaCheckbox">India (IST)</label>
+						</div>
+						<div class="ms-2 form-check">
+							<input class="form-check-input" type="checkbox" id="germanyCheckbox">
+							<label class="form-check-label" for="germanyCheckbox">Germany (CET)</label>
+						</div>
+						<div class="ms-2 form-check">
+							<input class="form-check-input" type="checkbox" id="canadaCheckbox">
+							<label class="form-check-label" for="canadaCheckbox">Canada (EST)</label>
+						</div>
+						<div class="ms-2 form-check">
+							<input class="form-check-input" type="checkbox" id="australiaCheckbox">
+							<label class="form-check-label" for="australiaCheckbox">Australia (AEST)</label>
+						</div>
+
+						<div class="ms-2 form-check">
+							<input class="form-check-input" type="checkbox" id="chinaCheckbox">
+							<label class="form-check-label" for="chinaCheckbox">China (CST)</label>
+						</div>
+						<div class="ms-2 form-check">
+							<input class="form-check-input" type="checkbox" id="londonCheckbox">
+							<label class="form-check-label" for="londonCheckbox">London (GMT)</label>
+						</div>
+					</div>
+				</div>
+				<div class="displayClock">
+				<div class="row ps-5">
+            <div class="container col-md-3 clockContainer mt-5" id="indiaClock">
+                <div class="clockFace mt-5 ">
+                    <div class="hour" id="indiaHour"></div>
+                    <div class="minute" id="indiaMinute"></div>
+                    <div class="second" id="indiaSecond"></div>
+                </div>
+                <div >
+                    <p class="clockheading ">India (IST)</p>
+                    <div class="clock" id="india-clock-digital"></div>
+                </div>
+            </div>
+            <div class="container col-md-3 clockContainer mt-5 " id="germanyClock">
+                <div class="clockFace mt-5 ">
+                    <div class="hour" id="germanyHour"></div>
+                    <div class="minute" id="germanyMinute"></div>
+                    <div class="second" id="germanySecond"></div>
+                </div>
+                <div>
+                    <p class="clockheading ">Germany (CET)</p>
+                    <div class="clock" id="germany-clock-digital"></div>
+                </div>
+            </div>
+            <div class="container col-md-3 clockContainer mt-5 " id="chinaClock">
+                <div class="clockFace mt-5 ">
+                    <div class="hour" id="chinaHour"></div>
+                    <div class="minute" id="chinaMinute"></div>
+                    <div class="second" id="chinaSecond"></div>
+                </div>
+                <div>
+                    <p class="clockheading ">China (CST)</p>
+                    <div class="clock" id="china-clock-digital"></div>
+                </div>
+            </div>
+            <div class="container col-md-3 clockContainer mt-5 " id="londonClock">
+                <div class="clockFace mt-5 ">
+                    <div class="hour" id="londonHour"></div>
+                    <div class="minute" id="londonMinute"></div>
+                    <div class="second" id="londonSecond"></div>
+                </div>
+                <div>
+                    <p class="clockheading  ">London (GMT)</p>
+                    <div class="clock" id="london-clock-digital"></div>
+                </div>
+            </div>
+            <div class="container col-md-3 clockContainer mt-5 " id="canadaClock">
+                <div class="clockFace mt-5 ">
+                    <div class="hour" id="canadaHour"></div>
+                    <div class="minute" id="canadaMinute"></div>
+                    <div class="second" id="canadaSecond"></div>
+                </div>
+                <div>
+                    <p class="clockheading  ">Canada (EST)</p>
+                    <div class="clock" id="canada-clock-digital"></div>
+                </div>
+            </div>
+            <div class="container col-md-3 clockContainer mt-5 " id="australiaClock">
+                <div class="clockFace mt-5 ">
+                    <div class="hour" id="australiaHour"></div>
+                    <div class="minute" id="australiaMinute"></div>
+                    <div class="second" id="australiaSecond"></div>
+                </div>
+                <div>
+                    <p class="clockheading ">Australia (AEST)</p>
+                    <div class="clock" id="australia-clock-digital"></div>
+                </div>
+            </div>
+        </div>
+
+				</div>
+
+			</section>
+			<section id="timeZoneConvertor">
+			<div class="container text-center mt-5 pt-2">
+    <h2>Timezone Converter</h2>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="inputTime" class="form-label">Enter Time:</label>
+                <input type="datetime-local" class="form-control" id="inputTime">
+            </div>
+            <div class="mb-3">
+                <label for="fromTimezone" class="form-label">From Timezone:</label>
+                <select class="form-select" id="fromTimezone">
+                    <option value="Asia/Kolkata">India (IST)</option>
+                    <option value="Europe/Berlin">Germany (CET)</option>
+                    <option value="Asia/Shanghai">China (CST)</option>
+                    <option value="Europe/London">London (GMT)</option>
+                    <option value="America/Toronto">Canada (EST)</option>
+                    <option value="Australia/Sydney">Australia (AEST)</option>
+                </select>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label for="toTimezone" class="form-label">To Timezone:</label>
+                <select class="form-select" id="toTimezone">
+                    <option value="Asia/Kolkata">India (IST)</option>
+                    <option value="Europe/Berlin">Germany (CET)</option>
+                    <option value="Asia/Shanghai">China (CST)</option>
+                    <option value="Europe/London">London (GMT)</option>
+                    <option value="America/Toronto">Canada (EST)</option>
+                    <option value="Australia/Sydney">Australia (AEST)</option>
+                </select>
+            </div>
+            <button class="btn btn-dark" id="convertButton">Convert</button>
+            <p class="mt-3" id="result"></p>
+        </div>
+    </div>
+</div>
+</section>
+
+
+			<section id="calendar" class=" pb-3">
+
+				<h2 class="display-5 pb-2 text-center mt-3">Calendar</h2>
+
+				<div class="container">
+					<div
+						class="requestButton text-center">
+						<!-- Button trigger modal -->
+						<button type="button" class="btn btn-dark ms-5" data-bs-toggle="modal" data-bs-target="#exampleModal">
+							Request for a meeting
+						</button>
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+										<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body">
+										{{ form_start(form, {'attr': {'class': 'row g-3'}}) }}
+										<div class="col-md-6">
+											{{ form_row(form.Fname, {'attr': {'class': 'form-control', 'id': 'validationServer01'}}) }}
+										</div>
+										<div class="col-md-6">
+											{{ form_row(form.Lname, {'attr': {'class': 'form-control', 'id': 'validationServer02'}}) }}
+										</div>
+										<div class="col-md-12">
+											{{ form_row(form.email, {'attr': {'class': 'form-control', 'id': 'validationServer03'}}) }}
+										</div>
+										<div class="col-md-12">
+											{{ form_row(form.ChooseDateTime, {'attr': {'class': 'form-control', 'id': 'validationServer04'}}) }}
+										</div>
+										<div class="mb-3">
+											{{ form_row(form.purpose, {'attr': {'class': 'form-control', 'id': 'validationTextarea', 'placeholder': 'Required example textarea','type':'textarea'}}) }}
+											<div class="invalid-feedback">
+												Please enter a message in the textarea.
+											</div>
+										</div>
+										{{ form_end(form) }}
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+										<button class="btn btn-primary" type="submit" data-bs-submit="modal">Submit form</button>
+									</div>
+								</div>
+							</div>
+						</div>
+
+
+						<div class="px-4 pt-5 text-center d-flex">
+
+							<div class="calendar-container mb-4 ">
+								<header class="calendar-header">
+									<p class="calendar-current-date"></p>
+									<div class="calendar-navigation">
+										<span id="calendar-prev" class="material-symbols-rounded">
+											chevron_left
+										</span>
+										<span id="calendar-next" class="material-symbols-rounded">
+											chevron_right
+
+										</span>
+									</div>
+								</header>
+
+								<div class="calendar-body">
+									<ul class="calendar-weekdays">
+										<li>Sun</li>
+										<li>Mon</li>
+										<li>Tue</li>
+										<li>Wed</li>
+										<li>Thu</li>
+										<li>Fri</li>
+										<li>Sat</li>
+									</ul>
+									<ul class="calendar-dates"></ul>
+
+								</div>
+
+							</div>
+
+							
+						</div>
+
+
+					</div>
+				</section>
+
+				<section id="features">
+					<div class="container mt-5">
+						<h2 class="display-5 pb-2 text-center">Features</h2>
+						<div class="row g-5 py-5 row-cols-1 row-cols-lg-3 ">
+							<div class="col-md-4 ">
+								<h2 class="text-body-emphasis fs-4">Timezone detection
+																				                                and selection</h2>
+								<p>Automatic detection of the user’s local time zone.
+																				                                Manual selection of additional zones from a list.
+																				                                Ability to add, edit, and remove global clocks from
+																				                                the display</p>
+
+							</div>
+							<div class="col-md-4 ">
+								<h2 class="text-body-emphasis fs-4">Event
+																				                                management</h2>
+								<p>Create, edit, and delete events. Assign events to
+																				                                specific time zones. Recurring events (daily,
+																				                                weekly, monthly, yearly). Event details (title,
+																				                                description, location, participants).</p>
+
+							</div>
+							<div class="col-md-4 ">
+								<h2 class="text-body-emphasis fs-4">Timezone
+																				                                Converter</h2>
+								<p>Convert specific dates and times between selected
+																				                                time zones. Simple and intuitive interface for quick
+																				                                conversions.</p>
+
+							</div>
+						</div>
+					</div>
+				</section>
+							<section id="about">
+			<div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-8 about-section">
+                <h2 class="text-center">About Me</h2>
+                <div class="text-center mt-4">
+                    <img src="dist/img/profilePic.jpg" alt="Profile Picture" class="profile-img">
+                </div>
+                <div class="mt-4 text-center">
+                    <h4>Vineet Kankerwal</h4>
+                    <p>I'm Vineet Kankerwal from Ladwa, district Kurukshetra, capital Haryana. I am pursuing my Master of Computer Application from Tilak Raj Chadha Institute of Management and Technology, Yamunanagar, in the batch of 2023-2025.</p>
+                </div>
+                <div class="vision-section text-center">
+                    <h4>Project Vision</h4>
+                    <p>Our project aims to leverage advanced technologies to create innovative solutions that address real-world problems. We strive to develop applications that are user-friendly, efficient, and scalable, making a significant impact in the field of technology and beyond.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+				
+			</section>
+				<section id="contactUs" class="py-5">
+					
+    <div class="container">
+        <h2 class="display-5 pb-2 text-center">Contact Us</h2>
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" id="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Message</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Your Message" required></textarea>
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-dark">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+				</section>
+				<footer class="row row-cols-1 row-cols-sm-2 row-cols-md-5 py-5 px-5 pe-5">
+					<div class="col mb-3">
+						<a href="/" class="d-flex align-items-center mb-3 link-body-emphasis text-decoration-none">
+							<svg class="bi me-2" width="40" height="32">
+								<use xlink:href="#bootstrap"></use>
+							</svg>
+						</a>
+						<p class="text-body-secondary ms-5">© 2024</p>
+						<div class="icons d-flex">
+							<a href="https://www.facebook.com/vineet.kankerwal.3?mibextid=ZbWKwL" ><img class="m-2" height="20px" width="20px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAmklEQVR4nO3SMQ6DMAyF4Z8ujBkYepHOTAwg7thLdOMWndgJW0+AGFJVaqUMRbhSDCLNkzzanxIbUv4xLTACLlBZoJHANiD6qUECO6WKC74BJVAAOXAGem24A05f5ty14WphjjpsvN4rMG+148zrnbY8Lj/qVy3JYw/Y7PXiS3Q7dgl+J321O8RxWQV4kMDNj/ga/EJrCZwSV56ueZA1dhIF3QAAAABJRU5ErkJggg=="></a>
+							<a href="https://www.linkedin.com/in/vineet-kankerwal-2662a31b4?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" ><img class="m-2" height="20px" width="20px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAACXBIWXMAAAsTAAALEwEAmpwYAAAA4ElEQVR4nO2WvQ4BQRSFvxU6P4VG5wU0KioqiQ3eQu81VJ7DA+h0RFTeQLUrohSFiLArktlkTGOLmVk/e5JT3HPvzZfMTDGQ6h/VA3ZAqMk+4MYB+xqhkb044NCQ30pdOAJL4GwTfAKqIq8DN1vgtdLzbIEvQEPkAyCwecd3YJ/E4xoLT0R9kLIZsAVGQB8YAitdYEfkeVFvpNkmUFL2M8DcNDhSmVd1TIMdYCHyqZRXTINr0twVyIo8ZxrcUmYLUi8wCW4rs8UUzDcedajJnwv2k/r6uJrhT2g3DjjVb+kBRsV7Hz5Qag0AAAAASUVORK5CYII="></a>
+							<a href="https://www.youtube.com/@vineetkankerwal5202" ><img class="m-2" height="20px" width="20px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAACFElEQVR4nO2ZT0hUQRzHP5qBN0OxY+hJ6xJ0yIvgRQovXrrrkmB4CjoFeSgQ9iwdPQpCGwQdPKl0CILFP0gaIcIi4h6KWBMjdXWZeDAPtljfb7Y3szvCfOB7Wtjf78PO7Jv3GwgEAoFAIGDMdeA2MApMAa+AOeAdsAysAbvAN6Ck8xtQVTmu+qwIfAXywBLwBngNTAMZ4AFwC0v0ADPAZ6D8T1ONyhHwAXgCtP+PxGPgV5OaV5dkG7hTj0S0fCoeNK5qZA/oNpG4Bux70LBKSNZE5K4HjSohBRORRx40qgzSIYk886BJZZD7ksisB00qg4xLIu9TFhgGtnzY8J9SFohoAyaB7w5FFiSRTQsiMZ16qZ47EFmSRHYtisT0AYuWRTYlkaIDkZhhfcywIVKURH46FIlP0U+Bw5R1zoCWpEJpT7mmxPvnwtVDsdwgkS4LIjeSCqT9yU2XVtolXAFakwodON7sX1J+v9KJ3jIT2XEg0u/g77cgiWxckQfiuiTy0YJIvA9KDgSUzook8jZlgRE9HVGOMy+JZBvQhI28lEQmPGhSGWRMEhnyoEllkEFJpNvjUZDSqZiOhJY9aFYlJOrPiHs15ra+5BQYoA4e6oG08ig/9BS0bqJ1+BxYBU6a1PyJrv8CuIkFopNmrx73Z/T4P7oGyOn357x+EBarrg6O67hWyNW4VuiVTriBQCAQCAT4mz8yJp3ulSURNAAAAABJRU5ErkJggg=="></a>
+							<a href="https://www.instagram.com/vineet_kankerwal?igsh=b3BiY2V4ZzQ1Z3Fy" ><img class="m-2" height="20px" width="20px" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADK0lEQVR4nO2ZO09UQRTHfwUqRB67lksrgrEQBTsfsZOYqHwCQlS+gApS+2iNhFKDX0AxsZLFZ6f2Itio2AoKCBWuOcn/JhMDu3Mfu3NN9p9McrP3nHPn7Jz3QBNN5AK9wAQwDywAG0Alo2WyTGYZGAcO1UOBQeBFhpv2XfPAQBYK7AGmgT8S/AN4AFzQ6ewnO5gsk3kReKhvVfTtKaAlqeAi8FLCfgO3gE4ah07gNrDpnE4hyUlEpvRdphUKR4Ev2ssbYG8c5mkxfgNKhEcJWNae7vsyDcouzZyOkR8cl5lt67kmIpMyn8gb7mhvFqKroteJTo107Ajn5ZNmRkM7vO8CVrTHnmqCJkRk4S8Elp0cYv65E2b0/kY1QWURWSzPqyLDej9XTdCiiNKUB5Z/RoGnwCeVHht6ntU7o9kJQ1LGlDhXw/xN3q5YE1FHAgXagEngp0fpsQrcBFoTfKdDMmyvuyL6UJI4/8Hhfw5cccoYW336bc6he58wT1Vq7TOJIiWZQnTcJz14TjlmnCTpVrJWpM05iVcxayHzk9fifRfTzCpZKzIp+oUkBZ2UiU7GQn8QRYqOY/uY02444wSAYghFRh3HTosof42EUGRWtJdJj6uS9TiEIpFtW4hNiz6fJFcvRdZF2056tEvW+v+uSKdk/fKkb5pWNWe3siMtxkI6+6hPOe2J+ZDht6gkZvSnSY6zTkIshC5RFmNkZRfGs+TT8dVbkVaV4hUVgHGUOQC8zUvR+G8Zv6TaycecPuepjI9Q0r8a8ZcViQ4rz7Trecxx7Ogk6tJYraVodVtViq96trp2dbCvXq3uYgbDh4LC6BP1KetaC/ptJGHvEmv4EHoc5INhn/ZhPPCAzgePtMdreR6Z1oL3yBQnqtglS95wN05XOqBrhU3f8X2DMAhs6Vqh35dpSprb+LKb8Oh25sL34jC2OCZmY/4ThEM/8NVJtLEvRQuOMpu6ZDFnaxS65BNbTruQOP+06M5uW8JWdD9xSQODLNrcCCarT3lixolO2zKnxNfTLo4AzzxKj6xXuV4Bp0d9w5xTfmS1aZP1UaH1OnCwHgo00QTx8Bf0wax6bwlEYQAAAABJRU5ErkJggg=="></a>
+						</div>
+
+					</div>
+
+					<div class="col mb-3"></div>
+
+					<div class="col mb-3">
+						<h5>Features</h5>
+						<ul class="nav flex-column">
+							<li class="nav-item mb-2">
+								<a href="#feature1" class="nav-link p-0 text-body-secondary">Timezone
+																				                                detection and selection</a>
+							</li>
+							<li class="nav-item mb-2">
+								<a href="#feature2" class="nav-link p-0 text-body-secondary">Event
+																				                                management</a>
+							</li>
+							<li class="nav-item mb-2">
+								<a href="#feature3" class="nav-link p-0 text-body-secondary">Timezone
+																				                                Converter</a>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="col mb-3">
+						<h5>Contact Us</h5>
+						<ul class="nav flex-column">
+							<li class="nav-item mb-2">
+								<a href="#contactdetail1" class="nav-link p-0 text-body-secondary">Email</a>
+							</li>
+							<li class="nav-item mb-2">
+								<a href="#contactdetail2" class="nav-link p-0 text-body-secondary">Contact
+																				                                Number</a>
+							</li>
+							<li class="nav-item mb-2">
+								<a href="#contactdetail3" class="nav-link p-0 text-body-secondary">Address</a>
+							</li>
+
+						</ul>
+					</div>
+
+					<div class="col mb-3">
+						<h5>About</h5>
+						<ul class="nav flex-column">
+							<li class="nav-item mb-2">
+								<a href="#" class="nav-link p-0 text-body-secondary">Location</a>
+							</li>
+							<li class="nav-item mb-2">
+								<a href="#" class="nav-link p-0 text-body-secondary">Privacy</a>
+							</li>
+							<li class="nav-item mb-2">
+								<a href="#" class="nav-link p-0 text-body-secondary">Terms</a>
+							</li>
+						</ul>
+					</div>
+				</footer>
+				</section>
+				<script>
+					document.addEventListener('DOMContentLoaded', function () {
+document.querySelector('[data-bs-submit="modal"]').addEventListener('click', function () {
+document.querySelector('#exampleModal form').submit();
+});
+});
+	document.getElementById('convertButton').addEventListener('click', function () {
+        const inputTime = document.getElementById('inputTime').value;
+        const fromTimezone = document.getElementById('fromTimezone').value;
+        const toTimezone = document.getElementById('toTimezone').value;
+
+        if (!inputTime) {
+            alert('Please enter a time.');
+            return;
+        }
+
+        const date = new Date(inputTime);
+        const utcTime = date.toISOString(); // Convert input to UTC
+        const convertedTime = new Date(utcTime).toLocaleString('en-US', { timeZone: toTimezone });
+
+        document.getElementById('result').innerText = `Converted Time: ${convertedTime}`;
+    });
+
+				</script>
+				<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+
+			{% endblock %}
