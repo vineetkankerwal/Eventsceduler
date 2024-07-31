@@ -51,14 +51,27 @@
 #myEvents{
     margin-top:10vh;
 }
+ input[type="text"] {
+    
+            margin-bottom: 12px;
+            padding: 8px;
+            width: 25%;
+            box-sizing: border-box;
+            border-radius:10px;
+        }
+      
+#filterButton{
+    margin-left:34vw;
+    margin-right:15vw;
 
+}
     </style>
 {% endblock %}
 
 {% block body %}
 <nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#"><img src="dist/img/LOGO.png" alt="logo icon" height="55px"></a>
+        <a class="navbar-brand" href="/"><img src="dist/img/LOGO.png" alt="logo icon" height="55px"></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -186,15 +199,19 @@
                 </div>
             </section>
 
-            <section id="EventList" class="mt-2">
+            <section id="EventList" class="mt-2 ">
                 <h2 class="text-center display-5 ">List of Events 
                         
                      
                             </h2>
-                <button type="button" class="btn1 btn btn-dark d-flex m-auto justify-content-center " data-bs-toggle="modal" data-bs-target="#filterModal">
-                    <span class="ms-2">filter</span>
+                            <div class="d-flex flex-row">
+                <button id="filterButton" type="button" class="btn1 btn btn-dark d-flex justify-content-center p-1 w-25 fs-4" data-bs-toggle="modal" data-bs-target="#filterModal">
+                    <span class="ms-2">Filter</span>
                     <span class="ml-2">&#x1F50D;</span>
+                    
                 </button>
+                 <input type="text" id="searchInput" placeholder="Search events by name.."class="d-flex flex-column">
+                 </div>
                 <div class="modal fade" id="filterModal" data-bs-keyboard="false" tabindex="-1" aria-labelledby="filterModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -226,6 +243,7 @@
                   
                 <div class="container mt-5">
                     <div class="table-container">
+                   
                         <table border="1" class="table table-bordered text-center" id="listOfEventsBox">
                             <thead class="table-dark">
                           
@@ -310,6 +328,17 @@ submitBtn.addEventListener('click', () => {
   // Or if you're using a custom modal implementation
   document.getElementById('filterModal').style.display = 'none';
 });
+ document.getElementById('searchInput').addEventListener('keyup', function() {
+        let input = this.value.toLowerCase();
+        let table = document.getElementById('listOfEventsBox');
+        let rows = table.querySelectorAll('tbody tr');
+        
+        rows.forEach(row => {
+            let cells = row.querySelectorAll('td');
+            let found = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(input));
+            row.style.display = found ? '' : 'none';
+        });
+    });
     
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
